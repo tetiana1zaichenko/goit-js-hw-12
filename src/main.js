@@ -85,6 +85,7 @@ form.addEventListener('submit', ev => {
                 params.total = res.total;
                 renderImages(res.hits);
                 checkBtnStatus();
+                smoothScroll();
         
             }
             catch (error) { console.log(error); }
@@ -106,6 +107,7 @@ btnLoadMore.addEventListener('click', ev => {
                 const res = await searchImage(params.userValue, params.page);
                 renderMoreImages(res.hits);
                 checkBtnStatus();
+                smoothScroll();
             }
             catch (error) { console.log(error); }
         finally {
@@ -113,8 +115,22 @@ btnLoadMore.addEventListener('click', ev => {
             }
         }
         fetchAndRenderImages();
-        ev.target.reset();
 })
+
+
+function smoothScroll() {
+    const firstCard = document.querySelector(".gallery .image-card");
+    
+    if (firstCard) {
+        const cardHeight = firstCard.getBoundingClientRect().height;
+        
+        window.scrollBy({
+            top: cardHeight * 2, 
+            behavior: "smooth" 
+        });
+    }
+}
+
 
 
 
