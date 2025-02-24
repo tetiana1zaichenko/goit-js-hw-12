@@ -71,6 +71,7 @@ form.addEventListener('submit', ev => {
 
     if (params.userValue === "") {
         gallery.innerHTML = "";
+        hideBtn();
         iziToast.error({
             title: 'Error',
             message: 'Please, full the field!',
@@ -79,6 +80,7 @@ form.addEventListener('submit', ev => {
     } else {
         console.log('make HTTP request');
         showLoader();
+        gallery.innerHTML = "";
         async function fetchAndRenderImages() {
             try {
                 const res = await searchImage(params.userValue, params.page);

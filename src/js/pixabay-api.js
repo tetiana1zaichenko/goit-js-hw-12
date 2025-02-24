@@ -29,6 +29,7 @@ export async function searchImage(userValue, page) {
         
         } else {
             gallery.innerHTML = "";
+            hideBtn();
             iziToast.error({
                 title: 'Error',
                 message: 'Sorry, there are no images matching your search query. Please try again!',
